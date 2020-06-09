@@ -1,5 +1,6 @@
 package com.lvlivejp.gulimall.controller;
 
+import com.lvlivejp.gulimall.vo.OrderVo;
 import com.lvlivejp.gulimall.vo.ProductVo;
 import com.lvlivejp.gulimall.vo.UserVo;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -32,6 +33,19 @@ public class RabbitMqController {
                 productVo.setProductName("手机");
                 rabbitTemplate.convertAndSend("hello-java-direct","hello-java1",productVo,correlationData);
             }
+        }
+        return "OK";
+    }
+
+    @GetMapping("/order")
+    public String order(){
+        for (int i = 0; i < 10; i++) {
+            CorrelationData correlationData = new CorrelationData();
+            correlationData.setId(i+"");
+            OrderVo orderVo = new OrderVo();
+            orderVo.setOrderId(i);
+            orderVo.setMemo("华为");
+            rabbitTemplate.convertAndSend("delay-order-exchange","order.order",orderVo,correlationData);
         }
         return "OK";
     }

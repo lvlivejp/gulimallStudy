@@ -3,15 +3,12 @@ package com.lvlivejp.gulimall.service;
 import com.alibaba.fastjson.JSONObject;
 import com.lvlivejp.gulimall.vo.ProductVo;
 import com.lvlivejp.gulimall.vo.UserVo;
-import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.impl.AMQImpl;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import org.springframework.stereotype.Service;
 
 @Service
